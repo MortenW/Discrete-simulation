@@ -19,11 +19,7 @@ function [fire, transition] = tInit_pre(transition)
             end;
         end;
     elseif strcmp(global_info.algorithm, 'sjf')
-        disp('SJF not yet implemented');
-        fire = 0;
-    elseif strcmp(global_info.algorithm, 'rr')
-        disp('RR not yet implemented');
-        fire = 0;
+        disp('not yet impleme
     else
         fire = 0;
     end;
