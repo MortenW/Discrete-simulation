@@ -1,12 +1,10 @@
 function [fire, transition] = tInit_pre(transition)
     global global_info;
-    if strcmp(global_info.algorithm, 'fcfs')
-        
-        pJobUnits = get_place('pJobbUnits');
-        if not(pJobUnits.tokens),
-            fire = 0;
-            return;
-        end;
+    pJobUnits = get_place('pJobbUnits');
+    if not(pJobUnits.tokens),
+        fire = 0;
+        return;
+    elseif strcmp(global_info.algorithm, 'fcfs')
         i = 1;
         while(i),
             at = ['at:', int2str(global_info.counter)];
