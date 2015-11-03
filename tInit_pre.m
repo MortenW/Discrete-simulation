@@ -20,8 +20,21 @@ function [fire, transition] = tInit_pre(transition)
         disp('SJF not yet implemented');
         fire = 0;
     elseif strcmp(global_info.algorithm, 'rr')
-        disp('RR not yet implemented');
-        fire = 0;
+        disp('RR');
+        i= 1;
+        while(i),
+            job_id = ['job_id:', int2str(global_info.i)];
+            fire = tokenAnyColor('pTask', 1, job_id);
+            if (fire)              
+                i = 0;
+                transition.selected_tokens = fire;
+            end;                   
+            if eq(global_info.possible_number_of_jobs, global_info.i),
+                global_info.i = 1;
+                disp('setter i til 1');
+            end;
+            global_info.i = global_info.i + 1;
+        end;
     else
         fire = 0;
     end;
