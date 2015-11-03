@@ -4,5 +4,5 @@ colors = {{'at:1', 'unit_id:1', 'total:3','job_id:1'},...
 {'at:2', 'unit_id:1', 'total:2','job_id:2'},...
 {'at:2', 'unit_id:2', 'total:2','job_id:2'}};
 
-s = sort_on_length(colors);
-disp(s(1));
+s = number_of_jobs(colors);
+disp(s);
