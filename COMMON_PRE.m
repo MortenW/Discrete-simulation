@@ -22,6 +22,10 @@ elseif strcmp(transition.name, 'tColorizer'),
     fire = 1;
     return;
 elseif strcmp(transition.name, 'tCs'),
-    
+    fire = tokenAnyColor('pExecute', 1, 'context_switch:1');
+    transition.selected_tokens = fire;
+elseif strcmp(transition.name, 'tNcs'),
+    fire = tokenAnyColor('pExecute', 1, 'context_switch:0');
+    transition.selected_tokens = fire;
 end;
 fire = 1;

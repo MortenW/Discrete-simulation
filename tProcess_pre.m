@@ -39,6 +39,7 @@ function [fire, transition] = tProcess_pre(transition)
         while(i),
             job_id = ['job_id:', int2str(global_info.i)];
             fire = tokenAnyColor('pTask', 1, job_id);
+            disp('job id');
             disp(global_info.i);
             disp(global_info.prev_job_id);
             if (fire)              
@@ -46,16 +47,20 @@ function [fire, transition] = tProcess_pre(transition)
                 if (should_context_switch(global_info.i, global_info.prev_job_id)),                 
                     disp('Context switch');  
                     global_info.prev_job_id = global_info.i;
+                    transition.new_color={'context_switch:1'};
                     %add color = cs: 1
                 else
                     %add color = cs: 0
                     disp('No context switch');
-                    transition.selected_tokens = fire;
-                    global_info.i = global_info.i + 1;
-               end;
+                    transition.new_color={'context_switch:0'};
+                    global_info.i = global_info.i + 1; 
+                end;
+                transition.selected_tokens = fire;
+                             
             end;
             if eq((number_of_jobs(colors) + 1) , global_info.i),
-                global_info.i = 1;       
+                global_info.i = 1;
+                global_info.prev_job_id = 0;
             end;
         end;
     else
