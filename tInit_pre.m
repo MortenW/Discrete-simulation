@@ -41,11 +41,9 @@ function [fire, transition] = tInit_pre(transition)
             fire = tokenAnyColor('pTask', 1, job_id);
             if (fire)              
                 i = 0;
-                disp('fire')
-                if (should_context_switch(fire, global_info.prev_job_id)),
-                    disp('Context switch');                    
-                    global_info.prev_job_id = job_id(fire);
-                    fire = 0;
+                if (should_context_switch(job_id, global_info.prev_job_id)),                 
+                    disp('Context switch');  
+                    global_info.prev_job_id = job_id;
                 else
                     disp('No context switch');
                     transition.selected_tokens = fire;
