@@ -34,12 +34,9 @@ function [fire, transition] = tProcess_pre(transition)
             end
         end
     elseif strcmp(global_info.algorithm, 'rr')
-        disp('RR');
         job_id = ['job_id:', int2str(global_info.i)];
         fire = tokenAnyColor('pTask', 1, job_id);
-        disp('job id');
-        disp(global_info.i);
-        disp(global_info.prev_job_id);
+
         if (fire)              
             if (should_context_switch(global_info.i, global_info.prev_job_id)),                 
                 disp('Context switch');  
