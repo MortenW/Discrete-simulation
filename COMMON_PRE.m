@@ -21,5 +21,7 @@ elseif strcmp(transition.name, 'tColorizer'),
     transition.new_color = {at, unit_id, total, job_id};
     fire = 1;
     return;
+elseif strcmp(transition.name, 'tCs'),
+    
 end;
 fire = 1;

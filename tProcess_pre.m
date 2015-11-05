@@ -1,9 +1,9 @@
-function [fire, transition] = tInit_pre(transition)
+function [fire, transition] = tProcess_pre(transition)
     global global_info;
     colors = global_info.colors; 
     % Do not fire until all job units are colorized.
     
-    pJobUnits = get_place('pJobbUnits');
+    pJobUnits = get_place('pJobUnits');
     if (pJobUnits.tokens),
         fire = 0;
         return;
@@ -39,18 +39,22 @@ function [fire, transition] = tInit_pre(transition)
         while(i),
             job_id = ['job_id:', int2str(global_info.i)];
             fire = tokenAnyColor('pTask', 1, job_id);
+            disp(global_info.i);
+            disp(global_info.prev_job_id);
             if (fire)              
                 i = 0;
-                if (should_context_switch(job_id, global_info.prev_job_id)),                 
+                if (should_context_switch(global_info.i, global_info.prev_job_id)),                 
                     disp('Context switch');  
-                    global_info.prev_job_id = job_id;
+                    global_info.prev_job_id = global_info.i;
+                    %add color = cs: 1
                 else
+                    %add color = cs: 0
                     disp('No context switch');
                     transition.selected_tokens = fire;
                     global_info.i = global_info.i + 1;
                end;
             end;
-            if eq(number_of_jobs(colors) + 1 , global_info.i),
+            if eq((number_of_jobs(colors) + 1) , global_info.i),
                 global_info.i = 1;       
             end;
         end;
