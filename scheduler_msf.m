@@ -1,6 +1,6 @@
 clear all; clc;
 global global_info;
-global_info.STOP_AT = 30;
+global_info.STOP_AT = 150;
 global_info.counter = 1;
 global_info.counter_processor = 1;
 global_info.i = 1;

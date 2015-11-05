@@ -35,33 +35,31 @@ function [fire, transition] = tProcess_pre(transition)
         end
     elseif strcmp(global_info.algorithm, 'rr')
         disp('RR');
-        i= 1;
-        while(i),
-            job_id = ['job_id:', int2str(global_info.i)];
-            fire = tokenAnyColor('pTask', 1, job_id);
-            disp('job id');
-            disp(global_info.i);
-            disp(global_info.prev_job_id);
-            if (fire)              
-                i = 0;
-                if (should_context_switch(global_info.i, global_info.prev_job_id)),                 
-                    disp('Context switch');  
-                    global_info.prev_job_id = global_info.i;
-                    transition.new_color={'context_switch:1'};
-                    %add color = cs: 1
-                else
-                    %add color = cs: 0
-                    disp('No context switch');
-                    transition.new_color={'context_switch:0'};
-                    global_info.i = global_info.i + 1; 
-                end;
-                transition.selected_tokens = fire;
-                             
+        job_id = ['job_id:', int2str(global_info.i)];
+        fire = tokenAnyColor('pTask', 1, job_id);
+        disp('job id');
+        disp(global_info.i);
+        disp(global_info.prev_job_id);
+        if (fire)              
+            if (should_context_switch(global_info.i, global_info.prev_job_id)),                 
+                disp('Context switch');  
+
+                transition.new_color={'context_switch:1'};
+            else                   
+                disp('No context switch');
+                transition.new_color={'context_switch:0'};
+
             end;
-            if eq((number_of_jobs(colors) + 1) , global_info.i),
-                global_info.i = 1;
-                global_info.prev_job_id = 0;
-            end;
+            transition.selected_tokens = fire;
+            global_info.prev_job_id = global_info.i;
+            global_info.i = global_info.i + 1;
+        else
+            global_info.i = global_info.i + 1;
+        end;
+
+        if eq((number_of_jobs(colors) + 1) , global_info.i),
+            global_info.i = 1;
+            global_info.prev_job_id = 0;
         end;
     else
         fire = 0;
