@@ -3,7 +3,7 @@ global global_info;
 global_info.STOP_AT = 150;
 global_info.counter = 1;
 global_info.counter_processor = 1;
-global_info.i = 1;
+global_info.job_id = 1;
 global_info.prev_job_id = 1;
 global_info.colors = {{'at:1', 'unit_id:1', 'total:3','job_id:1'},...
  {'at:1', 'unit_id:2', 'total:3','job_id:1'},...
