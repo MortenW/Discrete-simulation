@@ -28,14 +28,12 @@ function [fire, transition] = tProcess_pre(transition)
             global_info.remaining_units = units(2:length(units));
             total = ['total:', int2str(shortest_job)];
             fire = tokenAnyColor('pTask', 1, total);
-            %get color is fucked
-            k = get_color(fire);
-            disp(k);
 
             if (fire),
                 i = 0;
-                color = get_color(fire);
+                color = get_color('pTask',fire);
                 id= job_id(color);
+                disp(id);
                 if (should_context_switch(id, global_info.prev_job_id)),                 
                     disp('Context switch');  
                     transition.new_color={'context_switch:1'};

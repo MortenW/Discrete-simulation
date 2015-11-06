@@ -13,7 +13,7 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:3','job_id:1'},...
 
 global_info.remaining_units = sort_on_length(global_info.colors);
 
-global_info.algorithm = 'rr';
+global_info.algorithm = 'sjf';
 
 pns = pnstruct('generator_pdf');
 dyn.m0 = {'pJobUnits', 5, 'pReady',1}; % pJobbUnits starts with 5 tokens
