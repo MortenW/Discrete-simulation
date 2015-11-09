@@ -1,6 +1,6 @@
 clear all; clc;
 global global_info;
-global_info.STOP_AT = 150;
+global_info.STOP_AT = 100;
 global_info.counter = 1;
 global_info.counter_processor = 1;
 global_info.job_id = 1;
@@ -13,7 +13,7 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:3','job_id:1'},...
 
 global_info.remaining_units = sort_on_length(global_info.colors);
 
-global_info.algorithm = 'sjf';
+global_info.algorithm = 'fcfs';
 
 pns = pnstruct('generator_pdf');
 dyn.m0 = {'pJobUnits', 5, 'pReady',1}; % pJobbUnits starts with 5 tokens

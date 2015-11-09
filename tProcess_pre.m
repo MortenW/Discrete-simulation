@@ -9,13 +9,12 @@ function [fire, transition] = tProcess_pre(transition)
         return;
     elseif strcmp(global_info.algorithm, 'fcfs')
         i = 1;
-        fire = 0;
         while(i),
             at = ['at:', int2str(i)];
-            token_found = tokenAnyColor('pTask', 1, at);
-            if (token_found),
+            fire = tokenAnyColor('pTask', 1, at);
+            if (fire),
                 i = 0;
-                color = get_color('pTask',token_found);
+                color = get_color('pTask', fire);
                 c = {char(color(1)), char(color(2)), char(color(3)), char(color(4))};
                 id = job_id(c);
                 disp(id);
@@ -27,14 +26,12 @@ function [fire, transition] = tProcess_pre(transition)
                     disp('No context switch');
                     transition.new_color={'context_switch:0'};
                 end;
-                transition.selected_tokens = token_found;
                 global_info.prev_job_id = id;
+                transition.selected_tokens = fire;
             else
                 i = i + 1;
-                
             end
         end
-        
     elseif strcmp(global_info.algorithm, 'sjf')
         i = 1;
         while(i),
