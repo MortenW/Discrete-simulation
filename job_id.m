@@ -1,3 +1,4 @@
 function jid = job_id(color)
-jid = extract_value(color, 'job_id');
+c = {char(color(1)), char(color(2)), char(color(3)), char(color(4))};
+jid = extract_value(c, 'job_id');
 end
