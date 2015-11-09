@@ -32,7 +32,8 @@ function [fire, transition] = tProcess_pre(transition)
             if (fire),
                 i = 0;
                 color = get_color('pTask',fire);
-                id= job_id(color);
+                c = {char(color(1)), char(color(2)), char(color(3)), char(color(4))};
+                id= job_id(c);
                 disp(id);
                 if (should_context_switch(id, global_info.prev_job_id)),                 
                     disp('Context switch');  
