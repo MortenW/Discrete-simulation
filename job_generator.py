@@ -23,15 +23,20 @@ Job units will be written to a tab separated file with the following format:
 
 
 def main(argv):
-    if len(argv) == 2:
-        number_of_jobs = int(argv[0])
-        output_file = argv[1]
-        generate_random_jobs(number_of_jobs, output_file)
+    print len(argv)
+    if len(argv) != 2:
+        number_of_jobs = 20
+        output_file = 'job_units.txt'
     else:
-        generate_random_jobs()
+        number_of_jobs = int(argv[0])
+        print number_of_jobs
+        output_file = argv[1]
+        print output_file
+
+    generate_random_jobs(number_of_jobs, output_file)
 
 
-def generate_random_jobs(n=20, output_file='job_units.txt'):
+def generate_random_jobs(n, output_file):
     arrival_times = random.sample(range(1, n*3), n)
     arrival_times.sort()
     outfile = open(output_file, "w")
