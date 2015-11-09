@@ -9,16 +9,32 @@ function [fire, transition] = tProcess_pre(transition)
         return;
     elseif strcmp(global_info.algorithm, 'fcfs')
         i = 1;
+        fire = 0;
         while(i),
             at = ['at:', int2str(i)];
-            fire = tokenAnyColor('pTask', 1, at);
-            if (fire),
+            token_found = tokenAnyColor('pTask', 1, at);
+            if (token_found),
                 i = 0;
-                transition.selected_tokens = fire;
+                color = get_color('pTask',token_found);
+                c = {char(color(1)), char(color(2)), char(color(3)), char(color(4))};
+                id = job_id(c);
+                disp(id);
+                disp(global_info.prev_job_id);
+                if (should_context_switch(id, global_info.prev_job_id)),                 
+                    disp('Context switch');  
+                    transition.new_color={'context_switch:1'};
+                else                   
+                    disp('No context switch');
+                    transition.new_color={'context_switch:0'};
+                end;
+                transition.selected_tokens = token_found;
+                global_info.prev_job_id = id;
             else
                 i = i + 1;
+                
             end
         end
+        
     elseif strcmp(global_info.algorithm, 'sjf')
         i = 1;
         while(i),
@@ -27,14 +43,15 @@ function [fire, transition] = tProcess_pre(transition)
             % Remove the first job unit in the list of remaining units.
             global_info.remaining_units = units(2:length(units));
             total = ['total:', int2str(shortest_job)];
-            fire = tokenAnyColor('pTask', 1, total);
+            token_found = tokenAnyColor('pTask', 1, total);
 
-            if (fire),
+            if (token_found),
                 i = 0;
-                color = get_color('pTask',fire);
+                color = get_color('pTask',token_found);
                 c = {char(color(1)), char(color(2)), char(color(3)), char(color(4))};
-                id= job_id(c);
+                id = job_id(c);
                 disp(id);
+                disp(global_info.prev_job_id);
                 if (should_context_switch(id, global_info.prev_job_id)),                 
                     disp('Context switch');  
                     transition.new_color={'context_switch:1'};
@@ -42,9 +59,10 @@ function [fire, transition] = tProcess_pre(transition)
                     disp('No context switch');
                     transition.new_color={'context_switch:0'};
                 end;
-                transition.selected_tokens = fire;
+                transition.selected_tokens = token_found;
                 global_info.prev_job_id = id;
             end
+            fire = token_found;
         end
     elseif strcmp(global_info.algorithm, 'rr')      
         k = 1;

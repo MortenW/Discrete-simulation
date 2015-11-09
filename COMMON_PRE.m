@@ -1,5 +1,5 @@
 function [fire, transition] = COMMON_PRE(transition)
-%get rith value from token input
+%get rith valuep from token input
 global global_info;
 
 colors = global_info.colors;
@@ -24,8 +24,14 @@ elseif strcmp(transition.name, 'tColorizer'),
 elseif strcmp(transition.name, 'tCs'),
     fire = tokenAnyColor('pExecute', 1, 'context_switch:1');
     transition.selected_tokens = fire;
+    disp('transition cs');
+    disp(fire);
+    return;
 elseif strcmp(transition.name, 'tNcs'),
     fire = tokenAnyColor('pExecute', 1, 'context_switch:0');
     transition.selected_tokens = fire;
-end;
-fire = 1;
+    disp('transition ncs');
+    disp(fire);
+    return;
+else fire = 1;
+end
