@@ -1,6 +1,7 @@
 import sys
 import random
 from random import randint
+import numpy as np
 
 """
 Job units will be written to a tab separated file with the following format:
@@ -31,12 +32,14 @@ def main(argv):
         generate_random_jobs()
 
 
-def generate_random_jobs(n=20, output_file='job_units.txt'):
+def generate_random_jobs(n=500, output_file='job_units.txt'):
+    lengths = np.random.poisson(3, n) * 10
+    lengths = lengths + 1
     arrival_times = random.sample(range(1, n*3), n)
     arrival_times.sort()
     outfile = open(output_file, "w")
     for job_id, arrival_time in enumerate(arrival_times):
-        generate_job(outfile, arrival_time, job_id + 1, randint(1, 30))
+        generate_job(outfile, arrival_time, job_id + 1, lengths[job_id])
     outfile.close()
 
 

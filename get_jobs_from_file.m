@@ -1,3 +1,7 @@
+% Loads the job units from a tab separated file.
+% The job units are loaded into a two dimensional
+% cell array of strings that represents the colors
+% of the tokens in the simulation.
 function jobs = get_jobs_from_file(path)
     job_units = dlmread(path, '\t');
     [rows, ~] = size(job_units);

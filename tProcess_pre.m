@@ -38,7 +38,7 @@ function [fire, transition] = tProcess_pre(transition)
                 transition.selected_tokens = fire;
             end
         end
-    elseif strcmp(global_info.algorithm, 'rr')      
+    elseif strcmp(global_info.algorithm, 'rr')
         k = 1;
         while (k),
             id = ['job_id:', int2str(global_info.job_id)];
