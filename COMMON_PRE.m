@@ -39,7 +39,7 @@ elseif strcmp(transition.name, 'tNcs'),
     if(fire),
         color = get_color('pExecute', fire);
         id = job_id(color);       
-        disp('transition cs');
+        disp('transition ncs');
         disp(id);
         disp(current_time()+ 0.1);
         global_info.job_execution_time(id) = current_time()+ 0.1;

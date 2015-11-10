@@ -45,11 +45,17 @@ function [fire, transition] = tProcess_pre(transition)
             fire = tokenAnyColor('pTask', 1, id);            
             if (fire)  
                 k = 0;
-                c = should_context_switch(fire);                 
+                c = should_context_switch(fire);
                 transition.new_color={c}; 
                 transition.selected_tokens = fire;
-            end
+                if eq(global_info.units_done, 5),
+                    global_info.job_id = global_info.job_id + 1;
+                    global_info.units_done = 0;
+                end
+                global_info.units_done = global_info.units_done + 1;
+            else
                 global_info.job_id = global_info.job_id + 1;
+            end
 
             if eq((number_of_jobs(colors) + 1) , global_info.job_id),
                 global_info.job_id = 1;
