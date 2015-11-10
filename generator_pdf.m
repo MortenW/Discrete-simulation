@@ -2,9 +2,14 @@ function [png] = generator_pdf()
 
 png.PN_name = 'Scheduler';
 
+%The name of all the places in the Petri net
 png.set_of_Ps = {'pJobUnits', 'pTask', 'pExecute', 'pJobDone',... 
     'pTrigger', 'pReady'};
+
+%The name of all the transitions in the Petri net
 png.set_of_Ts = {'tColorizer', 'tProcess', 'tNcs', 'tCs', 'tRemove'};
+
+%The relationship between transitions and places in the Petri net
 png.set_of_As = {'pJobUnits', 'tColorizer', 1,... 
     'tColorizer', 'pTask', 1,...
     'pTask', 'tProcess', 1,...
