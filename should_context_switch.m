@@ -3,8 +3,7 @@
 function b = should_context_switch(fire)
     global global_info;
     color = get_color('pTask', fire);
-    c = {char(color(1)), char(color(2)), char(color(3)), char(color(4))};
-    id = job_id(c);
+    id = job_id(color);
     
     % If the job id of the unit that is currently being
     % processed is not equal to the job id of the unit
