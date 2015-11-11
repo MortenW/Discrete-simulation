@@ -28,7 +28,13 @@ elseif strcmp(transition.name, 'tColorizer'),
     % The color of the transition is assigned a list of
     % strings describing the job unit.
     transition.new_color = {at, unit_id, total, j_id};
-
+    
+    global_info.number = global_info.number + 1;
+    if eq (global_info.number, 10),
+        disp('Tokens gets color')
+        disp(global_info.number);
+    end
+    
     fire = 1;
     return;
 elseif strcmp(transition.name, 'tCs'),

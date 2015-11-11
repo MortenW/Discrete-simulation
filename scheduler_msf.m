@@ -6,7 +6,9 @@ global_info.counter_processor = 1;
 global_info.job_id = 1;
 global_info.prev_job_id = 0;
 global_info.units_done = 1;
-global_info.algorithm = 'rr';
+global_info.algorithm = 'sjf';
+algorithm = global_info.algorithm;
+global_info.number = 0 ;
 
 %{
 global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
@@ -48,10 +50,21 @@ plotp(sim, {'pJobUnits', 'pTask', 'pExecute', 'pJobDone',...
 prnfinalcolors(sim);
 disp('Execution time')
 
-%The section calculate the average execution time.
+%{
+The section calculate the average execution time.
+It also writes to result to file
+%}
 sum = 0;
+file = strcat('output/',algorithm,'_result.txt');
+fileID = fopen(file, 'w');
 for n = 1:length(global_info.job_execution_time),
     sum = sum + global_info.job_execution_time(n);
+    fprintf(fileID,'%12.8f\r\n' ,global_info.job_execution_time(n));
+
 end
 average = sum / length(global_info.job_execution_time);
 disp(average);
+
+fprintf(fileID,'%12.8f\r\n' ,average);
+fclose(fileID);
+disp(global_info.job_execution_time);
