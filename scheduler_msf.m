@@ -7,7 +7,7 @@ global_info.job_id = 1;
 global_info.prev_job_id = 0;
 global_info.units_done = 1;
 global_info.prev_at = 1;
-global_info.algorithm = 'rr';
+global_info.algorithm = 'fcfs';
 
 %{
 global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
