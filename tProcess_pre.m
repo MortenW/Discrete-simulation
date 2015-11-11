@@ -91,10 +91,12 @@ function [fire, transition] = tProcess_pre(transition)
     this time. This is for round robin.  
     %}
     elseif strcmp(global_info.algorithm, 'rr')      
+       %{
         i = 1;
         while (i),
             
-            %job_id: represent a field in the color f.exampel 'job_id:2'.
+            
+            job_id: represent a field in the color f.exampel 'job_id:2'.
             id = ['job_id:', int2str(global_info.job_id)];
             fire = tokenAnyColor('pTask', 1, id);            
             if (fire) 
@@ -114,7 +116,7 @@ function [fire, transition] = tProcess_pre(transition)
                 This check will achieve that we do 5 units per job.
                 This gives a more realistic simulation of a round robin
                 %}
-                if eq(global_info.units_done, 5),
+                if eq(global_info.units_done, 3),
                     global_info.job_id = global_info.job_id + 1;
                     
                     %{
@@ -142,6 +144,27 @@ function [fire, transition] = tProcess_pre(transition)
             If we have reaced the highest job id, we need to start all over
             again.
             %}
+            disp('info');
+            disp(number_of_jobs(colors)+1);
+            disp(global_info.job_id);
+            if eq((number_of_jobs(colors) + 1) , global_info.job_id),
+                global_info.job_id = 1;
+                global_info.prev_job_id = 0;
+            end;
+        end;
+            %}
+        k = 1;
+        while (k),
+            id = ['job_id:', int2str(global_info.job_id)];
+            fire = tokenAnyColor('pTask', 1, id);            
+            if (fire)  
+                k = 0;
+                c = should_context_switch(fire);                 
+                transition.new_color={c}; 
+                transition.selected_tokens = fire;
+            end
+                global_info.job_id = global_info.job_id + 1;
+
             if eq((number_of_jobs(colors) + 1) , global_info.job_id),
                 global_info.job_id = 1;
                 global_info.prev_job_id = 0;
