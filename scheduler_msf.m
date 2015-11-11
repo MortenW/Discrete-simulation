@@ -48,9 +48,6 @@ plotp(sim, {'pJobUnits', 'pTask', 'pExecute', 'pJobDone',...
             'pTrigger'});
 prnfinalcolors(sim);
 disp('Execution time')
-<<<<<<< HEAD
-disp(global_info.job_execution_time);
-=======
 
 %The section calculate the average execution time.
 sum = 0;
@@ -59,4 +56,3 @@ for n = 1:length(global_info.job_execution_time),
 end
 average = sum / length(global_info.job_execution_time);
 disp(average);
->>>>>>> 8cebb91306266bd6b873e436b81d86e7c7c743b0
