@@ -6,9 +6,9 @@ global_info.counter_processor = 1;
 global_info.job_id = 1;
 global_info.prev_job_id = 0;
 global_info.units_done = 1;
+global_info.algorithm = 'rr';
 
-
-
+%{
 global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
 {'at:1', 'unit_id:2', 'total:5','job_id:1'},...
  {'at:1', 'unit_id:3', 'total:5','job_id:1'},...
@@ -25,16 +25,14 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
  {'at:4', 'unit_id:3', 'total:5','job_id:4'},...
 {'at:4', 'unit_id:4', 'total:5','job_id:4'},...
 {'at:4', 'unit_id:5', 'total:5','job_id:4'}};
-
+%}
 disp('Loading jobs from file ...');
-%global_info.colors = get_jobs_from_file('job_generator/jobs_test.txt');
+global_info.colors = get_jobs_from_file('job_generator/jobs_test.txt');
 disp('All jobs loaded');
 
 disp('Sorting jobs on length ...');
 global_info.remaining_units = sort_on_length(global_info.colors);
 disp('Done');
-
-global_info.algorithm = 'rr';
 
 pns = pnstruct('generator_pdf');
 dyn.m0 = {'pJobUnits', length(global_info.remaining_units), 'pReady',1};
