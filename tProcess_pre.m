@@ -91,10 +91,10 @@ function [fire, transition] = tProcess_pre(transition)
     this check is to se which algorithm we want to simulate
     this time. This is for round robin.  
     %}
-    elseif strcmp(global_info.algorithm, 'rr')      
+    elseif strcmp(global_info.algorithm, 'rr')           
         i = 1;
         while (i),
-            
+                       
             %job_id: represent a field in the color f.exampel 'job_id:2'.
             id = ['job_id:', int2str(global_info.job_id)];
             fire = tokenAnyColor('pTask', 1, id);            
@@ -115,7 +115,7 @@ function [fire, transition] = tProcess_pre(transition)
                 This check will achieve that we do 5 units per job.
                 This gives a more realistic simulation of a round robin
                 %}
-                if eq(global_info.units_done, 5),
+                if eq(global_info.units_done, 3),
                     global_info.job_id = global_info.job_id + 1;
                     
                     %{
@@ -146,8 +146,9 @@ function [fire, transition] = tProcess_pre(transition)
             if eq((number_of_jobs(colors) + 1) , global_info.job_id),
                 global_info.job_id = 1;
                 global_info.prev_job_id = 0;
-            end;
-        end;
+                global_info.units_done = 1;
+            end
+        end
     else
         fire = 0;
     end

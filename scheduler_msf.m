@@ -1,6 +1,6 @@
 clear all; clc;
 global global_info;
-global_info.STOP_AT = 500;
+global_info.STOP_AT = 100;
 global_info.counter = 1;
 global_info.counter_processor = 1;
 global_info.job_id = 1;
@@ -10,9 +10,11 @@ global_info.prev_at = 1;
 global_info.algorithm = 'rr';
 
 %{
-global_info.colors = {{'at:1', 'unit_id:1', 'total:3','job_id:1'},...
-{'at:1', 'unit_id:2', 'total:3','job_id:1'},...
- {'at:1', 'unit_id:3', 'total:3','job_id:1'},...
+global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
+{'at:1', 'unit_id:2', 'total:5','job_id:1'},...
+ {'at:1', 'unit_id:3', 'total:5','job_id:1'},...
+ {'at:1', 'unit_id:4', 'total:5','job_id:1'},...
+ {'at:1', 'unit_id:5', 'total:5','job_id:1'},...
 {'at:2', 'unit_id:1', 'total:4','job_id:2'},...
  {'at:2', 'unit_id:2', 'total:4','job_id:2'},...
  {'at:2', 'unit_id:3', 'total:4','job_id:2'},...
@@ -26,7 +28,7 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:3','job_id:1'},...
 {'at:4', 'unit_id:5', 'total:5','job_id:4'}};
 %}
 disp('Loading jobs from file ...');
-global_info.colors = get_jobs_from_file('job_generator/job_units.txt');
+global_info.colors = get_jobs_from_file('job_generator/jobs_test.txt');
 disp('All jobs loaded');
 
 disp('Sorting jobs on length ...');
@@ -46,4 +48,15 @@ plotp(sim, {'pJobUnits', 'pTask', 'pExecute', 'pJobDone',...
             'pTrigger'});
 prnfinalcolors(sim);
 disp('Execution time')
+<<<<<<< HEAD
 disp(global_info.job_execution_time);
+=======
+
+%The section calculate the average execution time.
+sum = 0;
+for n = 1:length(global_info.job_execution_time),
+    sum = sum + global_info.job_execution_time(n);
+end
+average = sum / length(global_info.job_execution_time);
+disp(average);
+>>>>>>> 8cebb91306266bd6b873e436b81d86e7c7c743b0

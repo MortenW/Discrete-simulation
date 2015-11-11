@@ -11,6 +11,7 @@ function b = should_context_switch(fire)
     % switch should be performed.
     if(id ~= global_info.prev_job_id),
         b = 'context_switch:1';
+        global_info.units_done = 1;
     else
         b = 'context_switch:0';
     end
