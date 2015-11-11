@@ -16,7 +16,8 @@ function [fire, transition] = tProcess_pre(transition)
     this time. This one  is for first come first serve
     %}
     elseif strcmp(global_info.algorithm, 'fcfs')
-        i = 1;
+        i = global_info.prev_at;
+        i_max = i;
         while(i),
             
             % at represent a field in the color f.exampel 'at:2'.
@@ -44,8 +45,10 @@ function [fire, transition] = tProcess_pre(transition)
                 pTask, we increment the value i.               
                 %}                
                 i = i + 1;
+                i_max = i;
             end
         end
+        global_info.prev_at = i_max;
         
         %{
     this check is to se which algorithm we want to simulate

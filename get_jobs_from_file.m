@@ -3,6 +3,7 @@
 % cell array of strings that represents the colors
 % of the tokens in the simulation.
 function jobs = get_jobs_from_file(path)
+    % Read tab delimited content from the file located at 'path'.
     job_units = dlmread(path, '\t');
     [rows, ~] = size(job_units);
     jobs = cell(1, rows);

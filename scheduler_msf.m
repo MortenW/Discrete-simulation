@@ -9,6 +9,8 @@ global_info.units_done = 1;
 global_info.algorithm = 'sjf';
 algorithm = global_info.algorithm;
 global_info.number = 0 ;
+global_info.prev_at = 1;
+
 
 %{
 global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
