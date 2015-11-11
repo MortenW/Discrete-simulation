@@ -85,13 +85,7 @@ function [fire, transition] = tProcess_pre(transition)
                 transition.new_color={c};            
                 transition.selected_tokens = fire;
             end
-        end
-<<<<<<< HEAD
-    elseif strcmp(global_info.algorithm, 'rr')
-        k = 1;
-        while (k),
-=======
-        
+        end        
         %{
     this check is to se which algorithm we want to simulate
     this time. This is for round robin.  
@@ -101,7 +95,6 @@ function [fire, transition] = tProcess_pre(transition)
         while (i),
             
             %job_id: represent a field in the color f.exampel 'job_id:2'.
->>>>>>> origin/master
             id = ['job_id:', int2str(global_info.job_id)];
             fire = tokenAnyColor('pTask', 1, id);            
             if (fire) 
