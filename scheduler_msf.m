@@ -35,7 +35,7 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
 {'at:4', 'unit_id:5', 'total:5','job_id:4'}};
 %}
 disp('Loading jobs from file ...');
-global_info.colors = get_jobs_from_file('job_generator/job_units_short.txt');
+global_info.colors = get_jobs_from_file('job_generator/job_units_long.txt');
 disp('All jobs loaded');
 
 disp('Sorting jobs on length ...');

@@ -108,9 +108,10 @@ cpu_idle_time:
  20.00000000
  Throughput:
   0.25628540
+ occupancy tNcs: 
+  total time: 209.04
+  Percentage time: 53.5873%
 occupancy tCs: 
   total time: 70.25
   Percentage time: 18.0085%
-occupancy tNcs: 
-  total time: 209.04
-  Percentage time: 53.5873%
+
