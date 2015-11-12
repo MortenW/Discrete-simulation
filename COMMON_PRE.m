@@ -31,8 +31,8 @@ elseif strcmp(transition.name, 'tColorizer'),
     
     global_info.number = global_info.number + 1;
     if eq (global_info.number, 10),
-        disp('Tokens gets color')
-        disp(global_info.number);
+        disp('Tokens gets color');
+        global_info.number = 0;
     end
     
     fire = 1;
@@ -52,6 +52,7 @@ elseif strcmp(transition.name, 'tCs'),
     fire = tokenAnyColor('pExecute', 1, 'context_switch:1');
     transition.selected_tokens = fire;
     if(fire),
+        global_info.counter_cs = global_info.counter_cs + 1;
         color = get_color('pExecute', fire);
         id = job_id(color);       
         disp('transition cs');

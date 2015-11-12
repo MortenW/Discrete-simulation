@@ -10,6 +10,9 @@ global_info.algorithm = 'sjf';
 algorithm = global_info.algorithm;
 global_info.number = 0 ;
 global_info.prev_at = 1;
+global_info.counter_cs = 0;
+global_info.number_of_jobs_ncs = 0;
+global_info.number_of_jobs_cs = 0;
 
 
 %{
@@ -64,9 +67,17 @@ for n = 1:length(global_info.job_execution_time),
     fprintf(fileID,'%12.8f\r\n' ,global_info.job_execution_time(n));
 
 end
+%average
 average = sum / length(global_info.job_execution_time);
 disp(average);
-
 fprintf(fileID,'%12.8f\r\n' ,average);
 fclose(fileID);
 disp(global_info.job_execution_time);
+
+%cpu utilization
+cpu_idle_time = global_info.counter_cs * 0.2;
+disp(cpu_idle_time); 
+
+%throughput
+res = throughput(global_info.job_execution_time);
+disp(res);
