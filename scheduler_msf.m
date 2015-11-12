@@ -1,6 +1,6 @@
 clear all; clc;
 global global_info;
-global_info.STOP_AT = 100;
+global_info.STOP_AT = 1000;
 global_info.counter = 1;
 global_info.counter_processor = 1;
 global_info.job_id = 1;
@@ -43,7 +43,7 @@ disp('Done');
 
 pns = pnstruct('generator_pdf');
 dyn.m0 = {'pJobUnits', length(global_info.remaining_units), 'pReady',1};
-dyn.ft = {'tProcess', 0.1, 'tColorizer', 0.1, 'tRemove', 0.1,...
+dyn.ft = {'tProcess', 0.1, 'tColorizer', 0.1, 'tRemove', 0.01,...
            'tCs', 0.7, 'tNcs',0.5, 'allothers', 0.1};
 
 pni = initialdynamics(pns, dyn);
@@ -53,6 +53,15 @@ prnss(sim);
 plotp(sim, {'pJobUnits', 'pTask', 'pExecute', 'pJobDone',...
             'pTrigger'});
 prnfinalcolors(sim);
+
+occupancy_matrix = occupancy(sim, {'tNcs'});
+disp(occupancy_matrix);
+occupancy_matrix = occupancy(sim, {'tCs'});
+disp(occupancy_matrix);
+duration_matrix = extractt(sim, {'tNcs'});
+disp('duration_matrix');
+disp(duration_matrix);
+
 disp('Execution time')
 
 %{
@@ -75,9 +84,11 @@ fclose(fileID);
 disp(global_info.job_execution_time);
 
 %cpu utilization
+disp('cpu utilization (job/tot_time)');
 cpu_idle_time = global_info.counter_cs * 0.2;
 disp(cpu_idle_time); 
 
 %throughput
+disp('Throughput');
 res = throughput(global_info.job_execution_time);
 disp(res);

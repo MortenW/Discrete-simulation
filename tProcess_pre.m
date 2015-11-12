@@ -5,12 +5,12 @@ function [fire, transition] = tProcess_pre(transition)
     %{
     This check is to ensure that tProcess doesn't fire
     before all tokens have been colorized.
-    %}    
+    %} 
+    
     pJobUnits = get_place('pJobUnits');
     if (pJobUnits.tokens),
         fire = 0;
         return;
-        
     %{
     this check is to se which algorithm we want to simulate
     this time. This one  is for first come first serve
