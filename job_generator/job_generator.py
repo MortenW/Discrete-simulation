@@ -32,14 +32,13 @@ def main(argv):
         generate_random_jobs()
 
 
-def generate_random_jobs(n=500, output_file='job_units.txt'):
-    lengths = np.random.poisson(3, n) * 10
-    lengths = lengths + 1
+def generate_random_jobs(n=100, output_file='job_units.txt'):
     arrival_times = random.sample(range(1, n*3), n)
+    print len(arrival_times)
     arrival_times.sort()
     outfile = open(output_file, "w")
     for job_id, arrival_time in enumerate(arrival_times):
-        generate_job(outfile, arrival_time, job_id + 1, lengths[job_id])
+        generate_job(outfile, arrival_time, job_id + 1, randint(10, 30))
     outfile.close()
 
 

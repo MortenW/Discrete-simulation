@@ -1,4 +1,5 @@
-from scipy.stats import weibull_min
+#from scipy.stats import weibull_min
+#from scipy.stats import hypergeom
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -24,9 +25,13 @@ ax.legend(loc='best', frameon=False)
 plt.show()
 """
 
+
 s = np.random.poisson(3, 10000) * 10
-print s + 1
-#s = np.random.poisson(lam=(100.), size=(100, 1))
+s = s + 1
+m = max(s)
+
+s = [m - entry for entry in s]
+
 binwidth = 10
 count, bins, ignored = plt.hist(s, bins=range(min(s), max(s) + binwidth, binwidth), normed=True)
 plt.show()
