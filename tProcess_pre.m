@@ -24,7 +24,7 @@ function [fire, transition] = tProcess_pre(transition)
             at = ['at:', int2str(i)];
             
             %want a token with this at value
-            fire = tokenAnyColor('pTask', 1, at);
+            fire = tokenAnyColor('pReadyQueue', 1, at);
             if (fire),
                 
                 % The i just stop the while loop.
@@ -42,7 +42,7 @@ function [fire, transition] = tProcess_pre(transition)
                 
                 %{
                 If there is no token with this color value 'at:i'  in the 
-                pTask, we increment the value i.               
+                pReadyQueue, we increment the value i.               
                 %}                
                 i = i + 1;
                 i_max = i;
@@ -72,7 +72,7 @@ function [fire, transition] = tProcess_pre(transition)
             
             % total represent a field in the color f.exampel 'total:12'.
             total = ['total:', int2str(shortest_job)];
-            fire = tokenAnyColor('pTask', 1, total);
+            fire = tokenAnyColor('pReadyQueue', 1, total);
 
             if (fire),
                 
@@ -99,7 +99,7 @@ function [fire, transition] = tProcess_pre(transition)
                        
             %job_id: represent a field in the color f.exampel 'job_id:2'.
             id = ['job_id:', int2str(global_info.job_id)];
-            fire = tokenAnyColor('pTask', 1, id);            
+            fire = tokenAnyColor('pReadyQueue', 1, id);            
             if (fire) 
                 % The i just stop the while loop.
                 i = 0;

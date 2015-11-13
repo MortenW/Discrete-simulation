@@ -44,14 +44,14 @@ disp('Done');
 
 pns = pnstruct('generator_pdf');
 dyn.m0 = {'pJobUnits', length(global_info.remaining_units), 'pReady',1};
-dyn.ft = {'tProcess', 0.1, 'tColorizer', 0.1, 'tRemove', 0.01,...
+dyn.ft = {'tProcess', 0.1, 'tColorizer', 0.1, 'tColorRemover', 0.01,...
            'tCs', 0.7, 'tNcs',0.5, 'allothers', 0.1};
 
 pni = initialdynamics(pns, dyn);
 
 sim = gpensim(pni);
 prnss(sim);
-plotp(sim, {'pJobUnits', 'pTask', 'pExecute', 'pJobDone',...
+plotp(sim, {'pJobUnits', 'pReadyQueue', 'pExecute', 'pJobDone',...
             'pTrigger'});
 prnfinalcolors(sim);
 

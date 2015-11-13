@@ -4,15 +4,15 @@ global global_info;
 
 colors = global_info.colors;
 
-pTask = get_place('pTask');
+pReadyQueue = get_place('pReadyQueue');
 pJob_Units = get_place('pJobUnits');
-    if not(pTask.tokens),
+    if not(pReadyQueue.tokens),
         if not(pJob_Units.tokens),
             global_info.STOP_SIMULATION = 1;
         end
     end
 
-if strcmp(transition.name, 'tRemove'),
+if strcmp(transition.name, 'tColorRemover'),
     % Enable override to prevent color pollution.
     transition.override = 1;
     fire = 1;
