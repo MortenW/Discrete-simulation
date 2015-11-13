@@ -66,7 +66,6 @@ rects1 = plt.bar(index +bar_width+bar_width, rr_short, bar_width,
 plt.xlabel('Jobb')
 plt.ylabel('run time')
 plt.title('Comparing different scheduling algorithms')
-#plt.xticks(index + bar_width, ('A', 'B', 'C', 'D', 'E'))
 plt.legend()
 
 plt.tight_layout()
