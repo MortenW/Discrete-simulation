@@ -2,6 +2,7 @@
 #from scipy.stats import hypergeom
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.backends.backend_pdf import PdfPages
 
 """
 fig, ax = plt.subplots(1, 1)
@@ -29,9 +30,15 @@ plt.show()
 s = np.random.poisson(3, 10000) * 10
 s = s + 1
 m = max(s)
-
 s = [m - entry for entry in s]
 
+plt.figure()
+plt.clf()
 binwidth = 10
 count, bins, ignored = plt.hist(s, bins=range(min(s), max(s) + binwidth, binwidth), normed=True)
+plt.xlabel('Job length', fontsize=13)
+plt.ylabel('Probability', fontsize=13)
+pp = PdfPages('long_data.pdf')
+pp.savefig(plt.gcf())
 plt.show()
+pp.close()
