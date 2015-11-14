@@ -6,26 +6,27 @@ sjf_short = []
 fcfs_short = []
 files = ['rr_result_short.txt','fcfs_result_short.txt','sjf_result_short.txt']
 
+
 for i, value in enumerate(files):
 	file = open(value, 'r')
-	for line in file:
+	for j,line in enumerate(file):
 		try:
 			line = float(line)
-			if i == 0:
+			if i == 0 and (j % 2 == 0):
 				rr_short.append(line)
-			elif i == 1:
+			elif i == 1 and (j % 2 == 0):
 				fcfs_short.append(line)
-			elif i == 2:
+			elif i == 2 and (j % 2 == 0):
 				sjf_short.append(line)
 		except ValueError:
 			break
 for i, value in enumerate(fcfs_short):
 	print value
 
-ind = np.arange(100)
+ind = np.arange(len(rr_short))
 width = 0.35 
 
-n_groups = 100
+n_groups = len(rr_short)
 
 index = np.arange(n_groups)
 bar_width = 0.25
@@ -55,7 +56,7 @@ rects3 = plt.bar(index +bar_width+bar_width, rr_short, bar_width,
 plt.xlabel('job id')
 plt.ylabel('execution time')
 plt.legend()
-plt.savefig("diagrma_short.pdf")
+plt.savefig("diagrma_short_collection.pdf")
 plt.show()
 plt.close()
 #plt.tight_layout()
