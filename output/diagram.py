@@ -22,13 +22,10 @@ for i, value in enumerate(files):
 for i, value in enumerate(fcfs_short):
 	print value
 
-fig, ax = plt.subplots()
 ind = np.arange(100)
 width = 0.35 
 
 n_groups = 100
-
-fig, ax = plt.subplots()
 
 index = np.arange(n_groups)
 bar_width = 0.25
@@ -43,30 +40,22 @@ rects1 = plt.bar(index, fcfs_short, bar_width,
                  error_kw=error_config,
                  label='fcfs, avg:175.730675')
 
-rects1 = plt.bar(index + bar_width, sjf_short, bar_width,
+rects2 = plt.bar(index + bar_width, sjf_short, bar_width,
                  alpha=opacity,
                  color='y',
                  #yerr=std_men,
                  error_kw=error_config,
                  label='sjf, avg:228.803775')
-rects1 = plt.bar(index +bar_width+bar_width, rr_short, bar_width,
+rects3 = plt.bar(index +bar_width+bar_width, rr_short, bar_width,
                  alpha=opacity,
                  color='r',
                  #yerr=std_men,
                  error_kw=error_config,
                  label='rr, avg:282.26485')
-
-#rects2 = plt.bar(index + bar_width, means_women, bar_width,
- #                alpha=opacity,
-  #               color='r',
-   #              yerr=std_women,
-    #             error_kw=error_config,
-     #            label='Women')
-
-plt.xlabel('Jobb')
-plt.ylabel('run time')
-plt.title('Comparing different scheduling algorithms')
+plt.xlabel('job id')
+plt.ylabel('execution time')
 plt.legend()
-
-plt.tight_layout()
+plt.savefig("diagrma_short.pdf")
 plt.show()
+plt.close()
+#plt.tight_layout()
