@@ -51,7 +51,7 @@ pni = initialdynamics(pns, dyn);
 
 sim = gpensim(pni);
 prnss(sim);
-plotp(sim, {'pJobUnits', 'pReadyQueue', 'pExecute', 'pJobDone',...
+plotp(sim, {'pJobUnits', 'pReadyQueue', 'pExecute', 'pJobUnitDone',...
             'pTrigger'});
 prnfinalcolors(sim);
 
