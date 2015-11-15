@@ -6,7 +6,7 @@ global_info.counter_processor = 1;
 global_info.job_id = 1;
 global_info.prev_job_id = 0;
 global_info.units_done = 1;
-global_info.algorithm = 'rr';
+global_info.algorithm = 'fcfs';
 algorithm = global_info.algorithm;
 global_info.number = 0 ;
 global_info.prev_at = 1;
@@ -35,7 +35,7 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
 {'at:4', 'unit_id:5', 'total:5','job_id:4'}};
 %}
 disp('Loading jobs from file ...');
-global_info.colors = get_jobs_from_file('job_generator/job_units_long.txt');
+global_info.colors = get_jobs_from_file('job_generator/job_units_short.txt');
 disp('All jobs loaded');
 
 disp('Sorting jobs on length ...');
@@ -100,7 +100,7 @@ fprintf(fileID,'%12s\r\n' ,'context_switch_started_after:');
 fprintf(fileID,'%12.8f\r\n' ,duration_matrix_cs(1,2));
 
 %cpu utilization
-disp('cpu utilization (job/tot_time)');
+disp('cpu utilization');
 cpu_idle_time = global_info.counter_cs * 0.2;
 fprintf(fileID,'%12s\r\n' ,'cpu_idle_time:');
 fprintf(fileID,'%12.8f\r\n' ,cpu_idle_time);

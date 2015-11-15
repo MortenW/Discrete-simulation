@@ -2,7 +2,7 @@
 % current CPU cyle.
 function b = should_context_switch(fire)
     global global_info;
-    color = get_color('pTask', fire);
+    color = get_color('pReadyQueue', fire);
     id = job_id(color);
     
     % If the job id of the unit that is currently being

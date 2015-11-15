@@ -6,3 +6,5 @@ COMMON_PRE.m~
 *.m~
 
 *.png
+
+output/fcfs_result.txt
