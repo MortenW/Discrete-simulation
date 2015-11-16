@@ -1,6 +1,11 @@
 import sys
 import collections
 
+"""
+This script loads a file of job units and computes the average waiting times
+for the FCFS and SJF scheduling methods.
+"""
+
 
 def main(argv):
     if len(argv) == 1:

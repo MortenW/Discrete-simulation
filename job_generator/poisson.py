@@ -1,5 +1,3 @@
-#from scipy.stats import weibull_min
-#from scipy.stats import hypergeom
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
