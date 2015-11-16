@@ -17,8 +17,6 @@ global_info.prev_at = 1;
 global_info.counter_cs = 0;
 global_info.number_of_jobs_ncs = 0;
 global_info.number_of_jobs_cs = 0;
-global_info.current_job = 0;
-global_info.prev_job = 1;
 file = strcat('output/', global_info.algorithm,'_result_wt_long.txt');
 fileID = fopen(file, 'w');
 

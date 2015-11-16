@@ -26,7 +26,12 @@ function [fire, transition] = tProcess_pre(transition)
             %want a token with this at value
             fire = tokenAnyColor('pReadyQueue', 1, at);
             if (fire),
-                
+                   color = get_color('pReadyQueue', fire);
+                   id = job_id(color);
+                   if eq(global_info.waiting_time(id), 0)
+                        global_info.waiting_time(id) = current_time();
+                   end
+
                 % The i just stop the while loop.
                 i = 0;
                 
@@ -75,6 +80,11 @@ function [fire, transition] = tProcess_pre(transition)
             fire = tokenAnyColor('pReadyQueue', 1, total);
 
             if (fire),
+               color = get_color('pReadyQueue', fire);
+               id = job_id(color);
+               if eq(global_info.waiting_time(id), 0)
+                    global_info.waiting_time(id) = current_time();
+               end
                 
                 % The i just stop the while loop.
                 i = 0;
