@@ -15,7 +15,7 @@ function [fire, transition] = tProcess_pre(transition)
     this check is to se which algorithm we want to simulate
     this time. This one  is for first come first serve
     %}
-    elseif strcmp(global_info.algorithm, 'fcfs')
+    elseif strcmpi(global_info.algorithm, 'fcfs')
         i = global_info.prev_at;
         i_max = i;
         while(i),
@@ -54,7 +54,7 @@ function [fire, transition] = tProcess_pre(transition)
     this check is to se which algorithm we want to simulate
     this time. This one is for shortest job first.  
     %}
-    elseif strcmp(global_info.algorithm, 'sjf')
+    elseif strcmpi(global_info.algorithm, 'sjf')
         i = 1;
         while(i),
             
@@ -93,7 +93,7 @@ function [fire, transition] = tProcess_pre(transition)
     this check is to se which algorithm we want to simulate
     this time. This is for round robin.  
     %}
-    elseif strcmp(global_info.algorithm, 'rr')           
+    elseif strcmpi(global_info.algorithm, 'rr')           
         i = 1;
         while (i),
                        
@@ -117,7 +117,7 @@ function [fire, transition] = tProcess_pre(transition)
                 This check will achieve that we do 5 units per job.
                 This gives a more realistic simulation of a round robin
                 %}
-                if eq(global_info.units_done, 3),
+                if eq(global_info.units_done, global_info.time_quantum),
                     global_info.job_id = global_info.job_id + 1;
                     
                     %{

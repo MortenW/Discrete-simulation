@@ -1,0 +1,14 @@
+  6.92000000
+ 15.33750000
+ 10.19750000
+  3.67000000
+        avg:
+  9.03125000
+no_context_switch_started_after:
+  2.95500000
+context_switch_started_after:
+  2.14000000
+cpu_idle_time:
+  0.80000000
+ Throughput:
+  0.26079870
