@@ -66,11 +66,7 @@ elseif strcmp(transition.name, 'tCs'),
         id = job_id(color);       
         disp('transition cs');
         %waiting time
-        global_info.start_time(id) = current_time();
-        global_info.waiting_time(global_info.prev_job) = global_info.waiting_time(global_info.prev_job)...
-            + current_time() - global_info.start_time(global_info.prev_job);
-        global_info.prev_job = id;
-
+   
         disp(id);
         disp(current_time()+ 1);
         global_info.job_execution_time(id) = current_time()+ 1;
@@ -98,12 +94,6 @@ elseif strcmp(transition.name, 'tNcs'),
         disp(id);
         disp(current_time()+ 0.1);
         global_info.job_execution_time(id) = current_time()+ 0.1;
-        if not(pReadyQueue.tokens),
-            if not(pJob_Units.tokens),
-            global_info.waiting_time(global_info.prev_job) = global_info.waiting_time(global_info.prev_job)...
-            + (current_time()+0.5) - global_info.start_time(global_info.prev_job);
-            end
-        end
     end;
     return;
 else fire = 1;

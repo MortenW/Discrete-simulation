@@ -6,7 +6,7 @@ global_info.counter_processor = 1;
 global_info.job_id = 1;
 global_info.prev_job_id = 0;
 global_info.units_done = 1;
-global_info.algorithm = 'rr';
+global_info.algorithm = 'fcfs';
 algorithm = global_info.algorithm;
 global_info.number = 0 ;
 global_info.prev_at = 1;
@@ -19,7 +19,6 @@ file = strcat('output/',algorithm,'_result_wt.txt');
 fileID = fopen(file, 'w');
 
 
-%{
 global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
 {'at:1', 'unit_id:2', 'total:5','job_id:1'},...
  {'at:1', 'unit_id:3', 'total:5','job_id:1'},...
@@ -36,11 +35,11 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
  {'at:4', 'unit_id:3', 'total:5','job_id:4'},...
 {'at:4', 'unit_id:4', 'total:5','job_id:4'},...
 {'at:4', 'unit_id:5', 'total:5','job_id:4'}};
-%}
+
 
 
 disp('Loading jobs from file ...');
-global_info.colors = get_jobs_from_file('job_generator/job_units_short.txt');
+%global_info.colors = get_jobs_from_file('job_generator/job_units_short.txt');
 disp('All jobs loaded');
 
 jobs = number_of_jobs(global_info.colors);
