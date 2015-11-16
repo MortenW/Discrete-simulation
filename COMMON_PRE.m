@@ -60,13 +60,22 @@ elseif strcmp(transition.name, 'tCs'),
     fire = tokenAnyColor('pExecute', 1, 'context_switch:1');
     transition.selected_tokens = fire;
     if(fire),
+                      
         global_info.counter_cs = global_info.counter_cs + 1;
         color = get_color('pExecute', fire);
         id = job_id(color);       
         disp('transition cs');
+        %waiting time
+        global_info.start_time(id) = current_time();
+        global_info.waiting_time(global_info.prev_job) = global_info.waiting_time(global_info.prev_job)...
+            + current_time() - global_info.start_time(global_info.prev_job);
+        global_info.prev_job = id;
+
         disp(id);
         disp(current_time()+ 1);
         global_info.job_execution_time(id) = current_time()+ 1;
+        
+        
     end;
     return;
 elseif strcmp(transition.name, 'tNcs'),
@@ -79,6 +88,7 @@ elseif strcmp(transition.name, 'tNcs'),
     % If no tokens matches the requested color, fire will be
     % equal to zero, and hence the transition will not fire.
     % If a token is found, the transition will fire.
+    
     fire = tokenAnyColor('pExecute', 1, 'context_switch:0');
     transition.selected_tokens = fire;
     if(fire),
@@ -88,6 +98,12 @@ elseif strcmp(transition.name, 'tNcs'),
         disp(id);
         disp(current_time()+ 0.1);
         global_info.job_execution_time(id) = current_time()+ 0.1;
+        if not(pReadyQueue.tokens),
+            if not(pJob_Units.tokens),
+            global_info.waiting_time(global_info.prev_job) = global_info.waiting_time(global_info.prev_job)...
+            + (current_time()+0.5) - global_info.start_time(global_info.prev_job);
+            end
+        end
     end;
     return;
 else fire = 1;

@@ -6,17 +6,20 @@ global_info.counter_processor = 1;
 global_info.job_id = 1;
 global_info.prev_job_id = 0;
 global_info.units_done = 1;
-global_info.algorithm = 'fcfs';
+global_info.algorithm = 'rr';
 algorithm = global_info.algorithm;
 global_info.number = 0 ;
 global_info.prev_at = 1;
 global_info.counter_cs = 0;
 global_info.number_of_jobs_ncs = 0;
 global_info.number_of_jobs_cs = 0;
+global_info.current_job = 0;
+global_info.prev_job = 1;
 file = strcat('output/',algorithm,'_result.txt');
 fileID = fopen(file, 'w');
 
-%{
+
+
 global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
 {'at:1', 'unit_id:2', 'total:5','job_id:1'},...
  {'at:1', 'unit_id:3', 'total:5','job_id:1'},...
@@ -33,9 +36,14 @@ global_info.colors = {{'at:1', 'unit_id:1', 'total:5','job_id:1'},...
  {'at:4', 'unit_id:3', 'total:5','job_id:4'},...
 {'at:4', 'unit_id:4', 'total:5','job_id:4'},...
 {'at:4', 'unit_id:5', 'total:5','job_id:4'}};
-%}
+
+jobs = number_of_jobs(global_info.colors);
+for n = 1:jobs,
+    global_info.waiting_time(n) = 0;
+ end
+
 disp('Loading jobs from file ...');
-global_info.colors = get_jobs_from_file('job_generator/job_units_short.txt');
+%global_info.colors = get_jobs_from_file('job_generator/job_units_short.txt');
 disp('All jobs loaded');
 
 disp('Sorting jobs on length ...');
@@ -113,3 +121,12 @@ fprintf(fileID,'%12s\r\n' ,'Throughput:');
 fprintf(fileID,'%12.8f\r\n' ,res);
 disp(res);
 fclose(fileID);
+
+%waiting time
+disp('waiting time');
+r = 0;
+for n = 1:length(global_info.waiting_time),
+    r = r + global_info.waiting_time(n);
+end
+disp('average')
+disp(r/length(global_info.waiting_time))
