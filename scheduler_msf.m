@@ -1,8 +1,9 @@
 clear all; clc;
 global global_info;
+
 % #### USER SETTINGS #### %
 global_info.algorithm = 'RR';
-global_info.jobs_file = 'job_generator/job_units_short.txt';
+global_info.jobs_file = 'job_generator/job_units_long.txt';
 global_info.time_quantum = 3;
 % ####################### %
 

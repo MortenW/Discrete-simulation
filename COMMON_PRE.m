@@ -1,5 +1,4 @@
 function [fire, transition] = COMMON_PRE(transition)
-%get rith valuep from token input
 global global_info;
 
 colors = global_info.colors;

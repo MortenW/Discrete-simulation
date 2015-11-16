@@ -12,8 +12,8 @@ function [fire, transition] = tScheduler_pre(transition)
         fire = 0;
         return;
     %{
-    this check is to se which algorithm we want to simulate
-    this time. This one  is for first come first serve
+    This check is to see which algorithm we want to simulate.
+    This one is for first-come, first-served. 
     %}
     elseif strcmpi(global_info.algorithm, 'fcfs')
         i = global_info.prev_at;
@@ -36,8 +36,8 @@ function [fire, transition] = tScheduler_pre(transition)
                 i = 0;
                 
                 %{
-                Should_context_switch() is method that check if we have
-                a new job id and need to do a context switch. returna new 
+                should_context_switch() is a function that checks if we have
+                a new job id and need to do a context switch. Returns a
                 color value 'context_switch:1' or 'context_switch:0'.
                 %}
                 c = should_context_switch(fire);                 
@@ -46,7 +46,7 @@ function [fire, transition] = tScheduler_pre(transition)
             else
                 
                 %{
-                If there is no token with this color value 'at:i'  in the 
+                If there are no tokens with the requested color in
                 pReadyQueue, we increment the value i.               
                 %}                
                 i = i + 1;
@@ -56,26 +56,27 @@ function [fire, transition] = tScheduler_pre(transition)
         global_info.prev_at = i_max;
         
         %{
-    this check is to se which algorithm we want to simulate
-    this time. This one is for shortest job first.  
+    This check is to se which algorithm we want to simulate
+    This one is for shortest job first.  
     %}
     elseif strcmpi(global_info.algorithm, 'sjf')
         i = 1;
         while(i),
             
             %{
-            Units is a list of all available jobs. This list is shorted 
-            on the length of the jobs, so the shortest job is first.
+            Units is a list of all available jobs. This list is sorted 
+            on the length of the jobs, so the shortest job is the first
+            item in the list.
             %}
             units = global_info.remaining_units;
             
-            %Get the value of the shortest job from the list.
+            % Get the value of the shortest job from the list.
             shortest_job = units(1);
             
             % Remove the first job unit in the list of remaining units.
             global_info.remaining_units = units(2:length(units));
             
-            % total represent a field in the color f.exampel 'total:12'.
+            % Total represents a field in the color e.g 'total:12'.
             total = ['total:', int2str(shortest_job)];
             fire = tokenAnyColor('pReadyQueue', 1, total);
 
@@ -86,28 +87,28 @@ function [fire, transition] = tScheduler_pre(transition)
                     global_info.waiting_time(id) = current_time();
                end
                 
-                % The i just stop the while loop.
+                % Stop the while loop.
                 i = 0;
                 
                 %{
-                Should_context_switch() is method that check if we have
-                a new job id and need to do a context switch. returna new 
+                should_context_switch() is a function that checks if we have
+                a new job id and need to do a context switch. Returns a
                 color value 'context_switch:1' or 'context_switch:0'.
                 %}
                 c = should_context_switch(fire);                 
                 transition.new_color={c};            
                 transition.selected_tokens = fire;
             end
-        end        
-        %{
-    this check is to se which algorithm we want to simulate
-    this time. This is for round robin.  
+        end
+        
+    %{
+    This check is to se which algorithm we want to simulate
+    This is for round-robin.  
     %}
     elseif strcmpi(global_info.algorithm, 'rr')           
         i = 1;
         while (i),
-                       
-            %job_id: represent a field in the color f.exampel 'job_id:2'.
+            %job_id: represents a field in the color f.exampel 'job_id:2'.
             id = ['job_id:', int2str(global_info.job_id)];
             fire = tokenAnyColor('pReadyQueue', 1, id);            
             if (fire) 
@@ -119,8 +120,8 @@ function [fire, transition] = tScheduler_pre(transition)
                     global_info.waiting_time(id) = current_time();
                end
                 %{
-                Should_context_switch() is method that check if we have
-                a new job id and need to do a context switch. returna new 
+                should_context_switch() is a function that checks if we have
+                a new job id and need to do a context switch. Returns a
                 color value 'context_switch:1' or 'context_switch:0'.
                 %}
                 c = should_context_switch(fire);
@@ -128,8 +129,8 @@ function [fire, transition] = tScheduler_pre(transition)
                 transition.selected_tokens = fire;
                 
                 %{
-                This check will achieve that we do 5 units per job.
-                This gives a more realistic simulation of a round robin
+                This check will make sure that we do a given amount of 
+                units per job (specified by global_info.time_quantum).
                 %}
                 if eq(global_info.units_done, global_info.time_quantum),
                     global_info.job_id = global_info.job_id + 1;
@@ -145,19 +146,17 @@ function [fire, transition] = tScheduler_pre(transition)
             else
                 
                 %{
-                if fire is zero it means that there is no tokens left
-                with the desire job id value. Therefor we need to increment
-                the job id value to find the next job.
+                If fire is zero it means that there is no tokens left
+                with the desired job id value. Therefore we need to 
+                increment the job id value to find the next job.
                 %}             
                 global_info.job_id = global_info.job_id + 1;
             end
             
             %{
-            number_of_jobs() return the number of different jobs, and not
-            the length of the list of colors. This will ensure that we
-            better performance for the code.
-            If we have reaced the highest job id, we need to start all over
-            again.
+            number_of_jobs() returns the number of different jobs, and not
+            the length of the list of colors. If we have reached the 
+            highest job id, we need to start all over again.
             %}
             if eq((number_of_jobs(colors) + 1) , global_info.job_id),
                 global_info.job_id = 1;

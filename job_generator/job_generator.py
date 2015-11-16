@@ -48,9 +48,9 @@ def generate_random_jobs(n=100, pattern='random', output_file='job_units.txt'):
     n: size of the data set (number of tokens can vary due to the randomness of
     the function).
 
-    pattern: for 'poisson', the pattern of the data will be similar to the one in Figure 6a.
+    pattern: for 'poisson', the pattern of the data will be similar to the one in Figure 9a.
              for 'inverse_poisson', the pattern of the data will be similar to the on in
-             Figure 6b.
+             Figure 9b.
 
     output_file: name of the generated output file.
 
