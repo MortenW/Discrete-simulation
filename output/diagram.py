@@ -5,8 +5,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 rr_short = []
 sjf_short = []
 fcfs_short = []
-files = ['rr_result_short.txt','fcfs_result_short.txt','sjf_result_short.txt']
-sample = 4
+files = ['rr_result_long.txt','fcfs_result_long.txt','sjf_result_long.txt']
+sample = 1
 
 for i, value in enumerate(files):
 	file = open(value, 'r')
@@ -24,7 +24,6 @@ for i, value in enumerate(files):
 for i, value in enumerate(fcfs_short):
 	print value
 
-ind = np.arange(len(rr_short))
 width = 0.35 
 
 n_groups = len(rr_short)
@@ -40,25 +39,33 @@ rects1 = plt.bar(index, fcfs_short, bar_width,
                  color='b',
                  #yerr=std_men,
                  error_kw=error_config,
-                 label='fcfs, avg:228,21')
+                 label='fcfs, avg:210.60')
 
 rects2 = plt.bar(index + bar_width, sjf_short, bar_width,
                  alpha=opacity,
                  color='y',
                  #yerr=std_men,
                  error_kw=error_config,
-                 label='sjf, avg:175.73')
+                 label='sjf, avg:177.51')
 rects3 = plt.bar(index +bar_width+bar_width, rr_short, bar_width,
                  alpha=opacity,
                  color='r',
                  #yerr=std_men,
                  error_kw=error_config,
-                 label='rr, avg:282,26')
+                 label='rr, avg:314.66')
 plt.xlabel('job id')
-plt.ylabel('execution time')
+plt.ylabel('Turnaround time')
 plt.legend()
 
-pp = PdfPages('diagram_short_collection_25.pdf')
+plt.tick_params(
+    axis = 'x',
+    which = 'both',
+    bottom = 'off',
+    top = 'off',
+    labelbottom = 'off'
+    )
+
+pp = PdfPages('diagram_long.pdf')
 pp.savefig()
 pp.close()
 
