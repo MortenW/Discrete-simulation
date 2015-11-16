@@ -108,11 +108,11 @@ cpu_idle_time:
  20.00000000
  Throughput:
   0.25627226
-Averga waiting time:
-225.76177500
-occupancy tCs: 
-  total time: 70.25
-  Percentage time: 18.0076%
 occupancy tNcs: 
   total time: 209.04
   Percentage time: 53.5845%
+occupancy tCs: 
+  total time: 70.25
+  Percentage time: 18.0076%
+Averga waiting time:
+225.76177500
