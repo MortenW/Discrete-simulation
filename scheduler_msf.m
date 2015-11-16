@@ -1,7 +1,7 @@
 clear all; clc;
 global global_info;
 % #### USER SETTINGS #### %
-global_info.algorithm = 'fcfs';
+global_info.algorithm = 'RR';
 global_info.jobs_file = 'job_generator/job_units_long.txt';
 global_info.time_quantum = 3;
 % ####################### %
@@ -35,7 +35,7 @@ disp('Done');
 
 pns = pnstruct('generator_pdf');
 dyn.m0 = {'pJobUnits', length(global_info.remaining_units), 'pReady',1};
-dyn.ft = {'tProcess', 0.1, 'tColorizer', 0.1, 'tColorRemover', 0.01,...
+dyn.ft = {'tScheduler', 0.1, 'tColorizer', 0.1, 'tColorRemover', 0.01,...
            'tCs', 0.7, 'tNcs',0.5, 'allothers', 0.1};
 
 pni = initialdynamics(pns, dyn);

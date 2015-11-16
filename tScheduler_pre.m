@@ -1,9 +1,9 @@
-function [fire, transition] = tProcess_pre(transition)
+function [fire, transition] = tScheduler_pre(transition)
     global global_info;
     colors = global_info.colors; 
     
     %{
-    This check is to ensure that tProcess doesn't fire
+    This check is to ensure that tScheduler doesn't fire
     before all tokens have been colorized.
     %} 
     
