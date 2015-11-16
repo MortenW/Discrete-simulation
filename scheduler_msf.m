@@ -77,33 +77,32 @@ disp('Execution time');
 average = sum / length(global_info.job_execution_time);
 disp(average);
 fprintf(fileID,'%12s\r\n' ,'avg:');
-fprintf(fileID,'%12.8f\r\n' ,average);
+fprintf(fileID,'%12.8f\r\n', average);
 
 disp('finish time for each job');
 disp(global_info.job_execution_time);
 
 % write start time for transition Ncs
 fprintf(fileID,'%12s\r\n' ,'no_context_switch_started_after:');
-fprintf(fileID,'%12.8f\r\n' ,duration_matrix_ncs(1,2));
+fprintf(fileID,'%12.8f\r\n', duration_matrix_ncs(1,2));
 
 % write start time for transition cs
 fprintf(fileID,'%12s\r\n' ,'context_switch_started_after:');
-fprintf(fileID,'%12.8f\r\n' ,duration_matrix_cs(1,2));
+fprintf(fileID,'%12.8f\r\n', duration_matrix_cs(1,2));
 
 %cpu utilization
 disp('cpu utilization');
 cpu_idle_time = global_info.counter_cs * 0.2;
 fprintf(fileID,'%12s\r\n' ,'cpu_idle_time:');
-fprintf(fileID,'%12.8f\r\n' ,cpu_idle_time);
+fprintf(fileID,'%12.8f\r\n', cpu_idle_time);
 disp(cpu_idle_time); 
 
 %throughput
 disp('Throughput');
 res = throughput(global_info.job_execution_time);
 fprintf(fileID,'%12s\r\n' ,'Throughput:');
-fprintf(fileID,'%12.8f\r\n' ,res);
+fprintf(fileID,'%12.8f\r\n', res);
 disp(res);
-fclose(fileID);
 
 %waiting time
 disp('waiting time');
@@ -112,4 +111,7 @@ for n = 1:length(global_info.waiting_time),
     r = r + global_info.waiting_time(n);
 end
 disp('average')
-disp(r/length(global_info.waiting_time))
+avg = (r/length(global_info.waiting_time));
+fprintf(fileID,'%12s\r\n' ,'Averga waiting time:');
+fprintf(fileID,'%12.8f\r\n', avg);
+fclose(fileID);
