@@ -39,21 +39,21 @@ rects1 = plt.bar(index, fcfs_short, bar_width,
                  color='b',
                  #yerr=std_men,
                  error_kw=error_config,
-                 label='fcfs, avg:210.60')
+                 label='FCFS, avg:210.60')
 
 rects2 = plt.bar(index + bar_width, sjf_short, bar_width,
                  alpha=opacity,
                  color='y',
                  #yerr=std_men,
                  error_kw=error_config,
-                 label='sjf, avg:177.51')
+                 label='SJF, avg:177.51')
 rects3 = plt.bar(index +bar_width+bar_width, rr_short, bar_width,
                  alpha=opacity,
                  color='r',
                  #yerr=std_men,
                  error_kw=error_config,
-                 label='rr, avg:314.66')
-plt.xlabel('job id')
+                 label='RR, avg:314.66')
+plt.xlabel('Jobs')
 plt.ylabel('Turnaround time')
 plt.legend()
 
