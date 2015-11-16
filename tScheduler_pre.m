@@ -113,7 +113,11 @@ function [fire, transition] = tScheduler_pre(transition)
             if (fire) 
                 % The i just stop the while loop.
                 i = 0;
-                
+                color = get_color('pReadyQueue', fire);
+               id = job_id(color);
+               if eq(global_info.waiting_time(id), 0)
+                    global_info.waiting_time(id) = current_time();
+               end
                 %{
                 Should_context_switch() is method that check if we have
                 a new job id and need to do a context switch. returna new 
