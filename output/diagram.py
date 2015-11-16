@@ -6,6 +6,7 @@ rr_short = []
 sjf_short = []
 fcfs_short = []
 files = ['rr_result_long.txt','fcfs_result_long.txt','sjf_result_long.txt']
+#sample desides how many sample to plot. value of 4 = every fourth sampling is plottet.
 sample = 1
 
 for i, value in enumerate(files):
