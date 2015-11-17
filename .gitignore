@@ -10,3 +10,4 @@ COMMON_PRE.m~
 output/fcfs_result.txt
 
 scheduler_msf.m
+job_generator/.ropeproject/*
